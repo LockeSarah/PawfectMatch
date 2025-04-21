@@ -63,7 +63,7 @@ export default function PetPage() {
                             <div></div>
                         </div>
                     ):(
-                        <p className="text-center text-emerald-900">Hover over a user to see details</p>
+                        <p className="text-center text-emerald-900">Select a pet to see details</p>
                     )}
                 </div>
             </div>
