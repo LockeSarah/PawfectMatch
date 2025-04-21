@@ -42,7 +42,7 @@ export default function Home() {
               value={uname} onChange={(e)=>{setUname(e.target.value);}}/>
             </div>
             <div> 
-              <input type="password" id="password" placeholder="Password" 
+              <input type="text" id="password" placeholder="Password" 
               className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center" 
               value={pwd} onChange={(e)=>{setPwd(e.target.value);}}/>
             </div>

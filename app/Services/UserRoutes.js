@@ -15,7 +15,7 @@ async function AllUsers() {
             user_id: tmp.user_id,
             fname: tmp.fname,
             email: tmp.email,
-            pwd_hash: tmp.pwd_hash,
+            pwd: tmp.pwd,
             role_id: tmp.role_id
         };
         list.push(users);
@@ -32,10 +32,10 @@ async function GetUser(user_id) {
         console.error("Query error:", error);
     }
     let user = {
-        user_id: result.rows[0].user_id,
+        username: result.rows[0].username,
         fname: result.rows[0].fname,
         email: result.rows[0].email,
-        pwd_hash: result.rows[0].pwd_hash,
+        pwd: result.rows[0].pwd,
         role_id: result.rows[0].role_id
     };
     return user;
@@ -48,7 +48,7 @@ async function AddUser(user) {
         result = await pool.query("INSERT INTO users"
             + "(fname, email, pwd_hash, role_id)" 
             + "VALUES ($1, $2, $3, $4)", 
-            [user.fname, user.email, user.pwd_hash, user.role_id]);
+            [user.fname, user.email, user.pwd, user.role_id]);
     } catch (error) {
         console.error("Query error:", error);
     }
@@ -60,7 +60,7 @@ async function UpdateUser(user) {
     var result;
     try {
         result = await pool.query("UPDATE users SET fname = $1, email = $2, pwd_hash = $3, role_id = $4 WHERE user_id = $5", 
-            [user.fname, user.email, user.pwd_hash, user.role_id, user.user_id]);
+            [user.fname, user.email, user.pwd, user.role_id, user.user_id]);
     } catch (error) {
         console.error("Query error:", error);
     }
@@ -78,4 +78,51 @@ async function DeleteUser(user_id) {
     return result;
 }
 
-export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser };
+// const LoginUser = async (username, password) => {
+//     try {
+//       const query = 'SELECT * FROM users WHERE username = $1';
+//       const values = [username];
+  
+//       const result = await pool.query(query, values);
+  
+//       if (result.rows.length === 0) {
+//         console.log('User not found');
+//         return false;
+//       }
+  
+//       const user = result.rows[0];
+  
+//       if (user.pwd !== password) {
+//         console.log('Incorrect password');
+//         return false;
+//       }
+  
+//       // Return user data if login is valid
+//       return {
+//         id: user.id,
+//         username: user.username,
+//         email: user.email,
+//       };
+  
+//     } catch (err) {
+//       console.error('LoginUser error:', err);
+//       return false;
+//     }
+//   };  
+  async function LoginUser(username, password) {
+    // Check the database for the user
+    const user = await pool.query("SELECT username, pwd, role_id FROM users WHERE username = $1", [username]);
+    
+    if (user && user.password === password) {
+      // Return the user data including the role_id
+      return {
+        id: user.id,
+        username: user.username,
+        role_id: user.role_id // role_id determines user type (admin, lister, adopter)
+      };
+    } else {
+      return null; // Invalid credentials
+    }
+  }
+
+export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser, LoginUser };

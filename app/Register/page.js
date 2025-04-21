@@ -51,7 +51,7 @@ export default function RegisterPage() {
                         className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"/>
                     </div>
                     <div>
-                        <input type="password" id="pwd_hash" placeholder="Pasword" value={pwd} onChange={(e) => setPwd(e.target.value)}
+                        <input type="password" id="pwd" placeholder="Pasword" value={pwd} onChange={(e) => setPwd(e.target.value)}
                         className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"/>
                     </div>
                     <div>

@@ -1,29 +1,32 @@
 "use client";
 import { createContext, useState } from "react";
+import { LoginUser } from "../Services/UserRoutes";
 
 export const MyContext = createContext();
 
 export function Provider({ children }) {
+    const [user, setUser] = useState(null);
     const [userRole, setUserRole] = useState(0); // 0: not logged in, 1: admin, 2: user
     const [logStatus, setLogStatus] = useState(0);
 
-    function handleLogin(uname, pwd) {
-        if (uname === "admin" && pwd === "admin") {
-            alert("Admin Login Successful");
-            setLogStatus(1);
-            setUserRole(1);
-        } else if (uname === "user" && pwd === "user") {
-            alert("User Login Successful");
-            setLogStatus(2);
-            setUserRole(2);
+    const handleLogin = async (username, password) => {
+        const userData = await LoginUser(username, password);
+        if (userData) {
+            setUser(userData); // Set the logged-in user data
+            setUserRole(2); // Set the user role (or customize this based on userData)
+            setLogStatus(1); // Indicate that the user is logged in
+            return true;
         } else {
-            alert("Invalid credentials");
+            return false;
         }
-    }
+    };
 
     function handleLogout() {
         setLogStatus(0);
         setUserRole(0);
+        setUser(null);
+        sessionStorage.removeItem("user_id");
+        sessionStorage.removeItem("user_role");
     }
 
     return (
