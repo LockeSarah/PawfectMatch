@@ -28,36 +28,32 @@ export default function RegisterPage() {
         //     alert("Password: \nMust be at least 10 characters long. \nMust contain at least one uppercase and one lowercase letter.\nMust contain at least one digit.");
         //     return;
         // }
-        const formData = {
-            fname,
-            username,
-            email,
-            pwd,
-            role_id: userType === "Lister" ? 2 : userType === "Adopter" ? 3 : null
-        };
-        try {
-            const response = await fetch("api/RegisterRoute.js", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
-    
-            const data = await response.json();
-    
-            if (response.ok) {
-                alert("Registration successful!");
-                console.log(data.result); // Handle the response as needed
-            } else {
-                alert(`Error: ${data.error}`);
-            }
-        } catch (err) {
-            console.error("Error submitting form:", err);
-            alert("An error occurred while submitting the form. Please try again.");
-        }
+    }
+    const formData = {
+        fname,
+        username,
+        email,
+        pwd,
+        role_id: userType === "Lister" ? 2 : userType === "Adopter" ? 3 : null
     };
+        async function addUser() {
+            try {
+                const result = await AddUser(formData);
+                if (result) { // Check if the result is truthy
+                    alert("User added successfully.");
+                    window.location.href = "/Login"; // Redirect to login page
+                } else {
+                    alert("Failed to add user.");
+                }
+            } catch (error) {
+                console.error("Error adding user:", error);
+                alert("An error occurred while adding the user.");
+            }
+        }
+        
 
     return (
-        <div className="flex flex-col items-center h-screen">
+        <div className="flex flex-col items-center h-screen bg-lime-100">
             <h1 className="text-3xl m-5">Register</h1>
             <div className="bg-white shadow-md rounded-lg p-6 w-100">
                 <form onSubmit={submitForm}>
@@ -87,7 +83,7 @@ export default function RegisterPage() {
                         {/* </select> */}
                     </div>
                     <div className="flex justify-center">
-                        <button type="submit" className="shadow-md p-2 rounded" value="Submit">Register</button>
+                        <button type="submit" className="shadow-md p-2 rounded" value="Submit" onClick={() => {addUser(formData)}}>Register</button>
                     </div>
                     <div className="flex justify-center mt-5">
                         <p className="px-2">Already have an account?</p>

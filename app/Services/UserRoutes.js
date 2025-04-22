@@ -43,15 +43,17 @@ async function GetUser(user_id) {
 
 // Add a new user
 async function AddUser(user) {
-    var result;
     try {
-        result = await pool.query("INSERT INTO users (fname, username, email, pwd, role_id) VALUES ($1, $2, $3, $4, $5)", 
-            [user.fname, user.username, user.email, user.pwd, user.role_id]);
-        console.log("User added successfully:", result);
+        const result = await pool.query(
+            "INSERT INTO users (fname, username, email, pwd, role_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [user.fname, user.username, user.email, user.pwd, user.role_id]
+        );
+        console.log("User added successfully:", result.rows[0]);
+        return result.rows[0]; // Return the inserted user
     } catch (error) {
         console.error("Query error:", error);
+        return null; // Return null in case of an error
     }
-    return result;
 }
 
 // Update a user
