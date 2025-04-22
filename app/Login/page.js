@@ -1,11 +1,32 @@
 "use client";
 import { useState, useContext } from "react";
-import { MyContext } from "../Components/MyContext.js";
 
 export default function LoginPage() {
-    const { handleLogin } = useContext(MyContext); 
     const [ uname, setUname ] = useState("");
     const [ pwd, setPwd ] = useState("");
+    const [ logStatus, setLogStatus ] = useState(0);
+    const [ userRole, setUserRole ] = useState(0);
+
+    function handleLogin() {
+        if (uname.trim() === "admin" && pwd.trim() === "admin") {
+            sessionStorage.setItem("logValue", 1);
+            setLogStatus(1);
+            setUserRole(1);
+            alert("Admin Login");
+        }
+        if (uname.trim() === "lister" && pwd.trim() === "lister") {
+            sessionStorage.setItem("logValue", 2);
+            setLogStatus(2);
+            setUserRole(2);
+            alert("Lister Login");
+        }
+        if (uname.trim() === "adopter" && pwd.trim() === "adopter") {
+            sessionStorage.setItem("logValue", 3);
+            setLogStatus(3);
+            setUserRole(3);
+            alert("Adopter Login");
+          }
+      }
 
     return (
         <div className="flex flex-col items-center h-screen">
@@ -18,12 +39,12 @@ export default function LoginPage() {
               value={uname} onChange={(e)=>{setUname(e.target.value);}}/>
             </div>
             <div> 
-              <input type="text" id="password" placeholder="Password" 
+              <input type="password" id="password" placeholder="Password" 
               className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center" 
               value={pwd} onChange={(e)=>{setPwd(e.target.value);}}/>
             </div>
             <div className="flex justify-center">
-              <button type="button" className="text-white rounded-md p-2 w-full" 
+              <button type="button" className="rounded-md p-2 w-full" 
               value="Login" onClick={() => handleLogin(uname, pwd)}>Login</button>
             </div>
             <div className="flex justify-center mt-5">

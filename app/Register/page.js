@@ -79,7 +79,7 @@ export default function RegisterPage() {
                         {/* </select> */}
                     </div>
                     <div className="flex justify-center">
-                        <button type="submit" className="text-white rounded-md p-2 w-full" value="Submit">Register</button>
+                        <button type="submit" className="rounded-md p-2 w-full" value="Submit">Register</button>
                     </div>
                     <div className="flex justify-center mt-5">
                         <p className="px-2">Already have an account?</p>

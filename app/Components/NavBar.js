@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { MyContext } from "../Components/MyContext";
 
 export default function NavBar() {
-    const { userRole, handleLogout } = useContext(MyContext);
+    const { handleLogout } = useContext(MyContext);
 
     return (
         <div className="grid grid-cols-6 p-5 text-2xl w-full h-18">

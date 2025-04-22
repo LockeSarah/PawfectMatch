@@ -21,12 +21,12 @@ export default function UsersPage() {
     }, []);
 
     return (
-        <div className="bg-lime-200 flex flex-col items-center h-screen">
-            <h1 className="text-3xl text-center text-emerald-900 m-5">Users</h1>
-            <h2 className="text-2xl text-center text-emerald-900 mb-5">Total Users: {length}</h2>
+        <div className="flex flex-col items-center h-screen">
+            <h1 className="text-3xl text-center m-5">Users</h1>
+            <h2 className="text-2xl text-center mb-5">Total Users: {length}</h2>
             <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white shadow-md rounded-lg p-6 w-100 text-center">
-                    <h3 className="text-emerald-900">User List</h3>
+                    <h3>User List</h3>
                     <ul>
                         {users.map((user, index) => (
                             <li
@@ -43,7 +43,7 @@ export default function UsersPage() {
                     </ul>
                 </div>
                 <div className="bg-white shadow-md rounded-lg p-6 w-100 text-center">
-                    <h3 className="text-emerald-900">User Details</h3>
+                    <h3>User Details</h3>
                     {ptr ? (
                         <div>
                             <p>User ID: {ptr.user_id}</p>
@@ -53,13 +53,13 @@ export default function UsersPage() {
                             <p>Role ID: {ptr.role_id}</p>
 
                             <div>
-                                <button className="bg-emerald-900 text-white rounded-md p-2 m-2" onClick={() => alert("Edit User")}>Edit</button>
-                                <button className="bg-emerald-900 text-white rounded-md p-2 m-2" onClick={() => alert("Delete User")}>Delete</button>
+                                <button className="rounded-md p-2 m-2" onClick={() => alert("Edit User")}>Edit</button>
+                                <button className="rounded-md p-2 m-2" onClick={() => alert("Delete User")}>Delete</button>
                             </div>
                             <div></div>
                         </div>
                     ):(
-                        <p className="text-center text-emerald-900">Select a user to see details</p>
+                        <p className="text-center">Select a user to see details</p>
                     )}
                 </div>
             </div>
