@@ -6,12 +6,12 @@ export default function NavBar() {
     const { handleLogout } = useContext(MyContext);
 
     return (
-        <div className="grid grid-cols-6 p-5 text-2xl w-full h-18">
-            <div> <a className="shadow-md p-2 rounded" href="/">Home</a> </div>
-            <div> <a className="shadow-md p-2 rounded" href="/Browse">Browse</a> </div>
-            <div> <a className="shadow-md p-2 rounded" href="/Profile">Profile</a> </div>
-            <div> <a className="shadow-md p-2 rounded" href="/Admin">Admin</a> </div>
-            <div> <button onClick={handleLogout} className="shadow-md p-2 rounded">Logout</button> </div>
+        <div className="bg-green-900 grid grid-cols-6 p-5 text-2xl w-full h-18">
+            <div> <a className="bg-amber-200  shadow-md p-2 rounded" href="/">Home</a> </div>
+            <div> <a className="bg-amber-200  shadow-md p-2 rounded" href="/Browse">Browse</a> </div>
+            <div> <a className="bg-amber-200  shadow-md p-2 rounded" href="/Profile">Profile</a> </div>
+            <div> <a className="bg-amber-200 shadow-md p-2 rounded" href="/Admin">Admin</a> </div>
+            <div> <button onClick={handleLogout} className="bg-amber-200 shadow-md p-2 rounded">Logout</button> </div>
             {/* {userRole === 2 && ( <div> <a className="bg-amber-900 shadow-md p-2 rounded text-white" href="/Browse">Browse</a> </div> )} */}
             {/* {userRole === 2 && ( <div> <a className="bg-amber-900 shadow-md p-2 rounded text-white" href="/Profile">Profile</a> </div> )} */}
             {/* {userRole !== 0 && ( <div> <button onClick={handleLogout} className="bg-amber-900 shadow-md p-2 rounded text-white">Logout</button> </div> )}  */}
