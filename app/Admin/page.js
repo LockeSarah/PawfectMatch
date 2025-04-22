@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { GetPetTypes } from "../Services/PetTypeRoutes";
-import { AllPets } from "../Services/PetRoutes";
+import { AllPets, DeletePet } from "../Services/PetRoutes";
 import { AllUsers, DeleteUser } from "../Services/UserRoutes";
 import { GetRoles } from "../Services/RolesRoutes";
 
@@ -24,8 +24,27 @@ export default function AdminPage() {
         setPets(petList);
         setPetLength(petList.length);
     }
+    async function delPet(pet_id) {
+        if (!pet_id) {
+            return;
+        }
+        try {
+            const result = await DeletePet(pet_id); // Call the DeletePet function
+            if (result && result.rowCount > 0) {
+                alert("Pet deleted successfully.");
+                fetchPetData(); // Refresh the pet list after deletion
+            } else {
+                alert("Failed to delete pet.");
+            }
+        } catch (error) {
+            console.error("Error deleting pet:", error);
+            alert("An error occurred while deleting the pet.");
+        }
+    }
+
     useEffect(() => {
         fetchPetData();
+        delPet();
     }, []);
 
     async function fetchUserData() {
@@ -36,13 +55,20 @@ export default function AdminPage() {
         setUserLength(userList.length);
     }
     async function delUser(user_id) {
-        var user_id = userPtr.user_id;
-        var result = await DeleteUser(user_id);
-        if (result) {
-            alert("User deleted successfully");
-            fetchUserData();
-        } else {
-            alert("Error deleting user");
+        if (!user_id) {
+            return;
+        }
+        try {
+            const result = await DeleteUser(user_id); // Call the DeleteUser function
+            if (result && result.rowCount > 0) {
+                alert("User and associated pets deleted successfully.");
+                fetchUserData(); // Refresh the user list after deletion
+            } else {
+                alert("Failed to delete user.");
+            }
+        } catch (error) {
+            console.error("Error deleting user:", error);
+            alert("An error occurred while deleting the user.");
         }
     }
     useEffect(() => {
@@ -92,7 +118,10 @@ export default function AdminPage() {
 
                             <div>
                                 <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Edit Pet")}>Edit</button>
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Delete Pet")}>Delete</button>
+                                <button className="shadow-md p-2 rounded m-1" onClick={() => {
+                                    console.log("Deleting pet with ID:", petPtr.pet_id); // Log the pet_id
+                                    delPet(petPtr.pet_id);
+                                }}>Delete</button>                            
                             </div>
                         </div>
                     ):(
@@ -129,7 +158,13 @@ export default function AdminPage() {
 
                             <div>
                                 <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Editing User")}>Edit</button>
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => delUser(userPtr.user_id)}>Delete</button>
+                                <button className="shadow-md p-2 rounded m-1" onClick={() => {
+                                    if (userPtr) {
+                                        delUser(userPtr.user_id);
+                                    } else {
+                                        alert("No user selected");
+                                    }
+                                }}>Delete</button>
                             </div>
                         </div>
                     ):(

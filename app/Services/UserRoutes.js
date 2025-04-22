@@ -68,13 +68,14 @@ async function UpdateUser(user) {
 
 // Delete a user
 async function DeleteUser(user_id) {
-    var result;
     try {
-        result = await pool.query("DELETE * FROM users WHERE user_id = $1", [user_id]);
+        const result = await pool.query("DELETE FROM users WHERE user_id = $1", [user_id]);
+        console.log("User deleted successfully:", result);
+        return {success: true, rowCount: result.rowCount};
     } catch (error) {
         console.error("Query error:", error);
+        return {success: false, error: error.message};
     }
-    return result;
 }
 
 export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser };

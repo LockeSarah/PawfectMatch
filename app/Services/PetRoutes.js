@@ -24,7 +24,7 @@ async function AllPets() {
         };
         list.push(pet);
     })
-    console.log(list);
+    // console.log(list);
     return list;
 };
 
@@ -79,13 +79,15 @@ async function UpdatePet(pet) {
 
 // Delete a pet
 async function DeletePet(pet_id) {
-    var result;
     try {
-        result = await pool.query("DELETE FROM pets WHERE pet_id = $1", [pet_id]);
+        console.log("Deleting pet with ID:", pet_id); // Log the pet_id
+        const result = await pool.query("DELETE FROM pets WHERE pet_id = $1", [pet_id]);
+        console.log("Pet deleted successfully:", result);
+        return { success: true, rowCount: result.rowCount };
     } catch (error) {
         console.error("Query error:", error);
+        return { success: false, error: error.message };
     }
-    return result;
-};
+}
 
 export { AllPets, GetPet, AddPet, UpdatePet, DeletePet };
