@@ -49,7 +49,7 @@ export default function UsersPage() {
                             <p>User ID: {ptr.user_id}</p>
                             <p>First Name: {ptr.fname}</p>
                             <p>Email: {ptr.email}</p>
-                            <p>Password Hash: {ptr.pwd_hash}</p>
+                            <p>Password: {ptr.pwd_hash}</p>
                             <p>Role ID: {ptr.role_id}</p>
 
                             <div>

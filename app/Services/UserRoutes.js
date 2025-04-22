@@ -45,10 +45,9 @@ async function GetUser(user_id) {
 async function AddUser(user) {
     var result;
     try {
-        result = await pool.query("INSERT INTO users"
-            + "(fname, email, pwd_hash, role_id)" 
-            + "VALUES ($1, $2, $3, $4)", 
-            [user.fname, user.email, user.pwd, user.role_id]);
+        result = await pool.query("INSERT INTO users (fname, username, email, pwd, role_id) VALUES ($1, $2, $3, $4, $5)", 
+            [user.fname, user.username, user.email, user.pwd, user.role_id]);
+        console.log("User added successfully:", result);
     } catch (error) {
         console.error("Query error:", error);
     }
@@ -59,7 +58,7 @@ async function AddUser(user) {
 async function UpdateUser(user) {
     var result;
     try {
-        result = await pool.query("UPDATE users SET fname = $1, email = $2, pwd_hash = $3, role_id = $4 WHERE user_id = $5", 
+        result = await pool.query("UPDATE users SET fname = $1, email = $2, pwd = $3, role_id = $4 WHERE user_id = $5", 
             [user.fname, user.email, user.pwd, user.role_id, user.user_id]);
     } catch (error) {
         console.error("Query error:", error);
@@ -78,51 +77,4 @@ async function DeleteUser(user_id) {
     return result;
 }
 
-// const LoginUser = async (username, password) => {
-//     try {
-//       const query = 'SELECT * FROM users WHERE username = $1';
-//       const values = [username];
-  
-//       const result = await pool.query(query, values);
-  
-//       if (result.rows.length === 0) {
-//         console.log('User not found');
-//         return false;
-//       }
-  
-//       const user = result.rows[0];
-  
-//       if (user.pwd !== password) {
-//         console.log('Incorrect password');
-//         return false;
-//       }
-  
-//       // Return user data if login is valid
-//       return {
-//         id: user.id,
-//         username: user.username,
-//         email: user.email,
-//       };
-  
-//     } catch (err) {
-//       console.error('LoginUser error:', err);
-//       return false;
-//     }
-//   };  
-  async function LoginUser(username, password) {
-    // Check the database for the user
-    const user = await pool.query("SELECT username, pwd, role_id FROM users WHERE username = $1", [username]);
-    
-    if (user && user.password === password) {
-      // Return the user data including the role_id
-      return {
-        id: user.id,
-        username: user.username,
-        role_id: user.role_id // role_id determines user type (admin, lister, adopter)
-      };
-    } else {
-      return null; // Invalid credentials
-    }
-  }
-
-export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser, LoginUser };
+export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser };
