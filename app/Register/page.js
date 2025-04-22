@@ -33,15 +33,23 @@ export default function RegisterPage() {
             username,
             email,
             pwd,
-            role_id,
+            role_id: userType === "Lister" ? 2 : userType === "Adopter" ? 3 : null
         };
-    
         try {
-            // Use the AddUser function from UserRoutes.js
-            const result = await AddUser(formData);
-
-            alert("Registration successful!");
-            console.log(result); // Handle the response as needed
+            const response = await fetch("api/RegisterRoute.js", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                alert("Registration successful!");
+                console.log(data.result); // Handle the response as needed
+            } else {
+                alert(`Error: ${data.error}`);
+            }
         } catch (err) {
             console.error("Error submitting form:", err);
             alert("An error occurred while submitting the form. Please try again.");
@@ -79,11 +87,11 @@ export default function RegisterPage() {
                         {/* </select> */}
                     </div>
                     <div className="flex justify-center">
-                        <button type="submit" className="rounded-md p-2 w-full" value="Submit">Register</button>
+                        <button type="submit" className="shadow-md p-2 rounded" value="Submit">Register</button>
                     </div>
                     <div className="flex justify-center mt-5">
                         <p className="px-2">Already have an account?</p>
-                        <a href="/" className="text-decoration-line: underline">Login</a>
+                        <a href="/Login" className="text-decoration-line: underline">Login</a>
                     </div>
                 </form>
             </div>

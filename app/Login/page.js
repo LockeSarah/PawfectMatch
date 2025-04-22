@@ -44,7 +44,7 @@ export default function LoginPage() {
               value={pwd} onChange={(e)=>{setPwd(e.target.value);}}/>
             </div>
             <div className="flex justify-center">
-              <button type="button" className="rounded-md p-2 w-full" 
+              <button type="button" className="shadow-md p-2 rounded"
               value="Login" onClick={() => handleLogin(uname, pwd)}>Login</button>
             </div>
             <div className="flex justify-center mt-5">

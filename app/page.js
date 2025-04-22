@@ -31,10 +31,10 @@ export default function Home() {
 
         <div className="bg-white shadow-md rounded-lg p-6 w-100">
             <div className="flex justify-center mt-5">
-              <a href="/Login" className="text-decoration-line: underline">Login</a>
+              <a href="/Login" className="shadow-md p-2 rounded">Login</a>
             </div> 
             <div className="flex justify-center mt-5">
-              <a href="/Register" className="text-decoration-line: underline">Register</a>
+              <a href="/Register" className="shadow-md p-2 rounded">Register</a>
             </div>          
         </div>
       </div>
