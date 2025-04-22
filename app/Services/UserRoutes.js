@@ -27,7 +27,7 @@ async function AllUsers() {
 async function GetUser(user_id) {
     var result;
     try {
-        result = await pool.query("SELECT * FROM users WHERE user_id = $1", [user_id]);
+        result = await pool.query("SELECT * FROM users WHERE user_id = ?", [user_id]);
     } catch (error) {
         console.error("Query error:", error);
     }
@@ -70,7 +70,7 @@ async function UpdateUser(user) {
 async function DeleteUser(user_id) {
     var result;
     try {
-        result = await pool.query("DELETE FROM users WHERE user_id = $1", [user_id]);
+        result = await pool.query("DELETE * FROM users WHERE user_id = $1", [user_id]);
     } catch (error) {
         console.error("Query error:", error);
     }

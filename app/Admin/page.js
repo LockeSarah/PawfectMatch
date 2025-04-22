@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { GetPetTypes } from "../Services/PetTypeRoutes";
 import { AllPets } from "../Services/PetRoutes";
-import { AllUsers } from "../Services/UserRoutes";
+import { AllUsers, DeleteUser } from "../Services/UserRoutes";
 import { GetRoles } from "../Services/RolesRoutes";
 
 export default function AdminPage() {
@@ -35,8 +35,19 @@ export default function AdminPage() {
         setUsers(userList);
         setUserLength(userList.length);
     }
+    async function delUser(user_id) {
+        var user_id = userPtr.user_id;
+        var result = await DeleteUser(user_id);
+        if (result) {
+            alert("User deleted successfully");
+            fetchUserData();
+        } else {
+            alert("Error deleting user");
+        }
+    }
     useEffect(() => {
         fetchUserData();
+        delUser();
     }, []);
 
     return (
@@ -114,19 +125,17 @@ export default function AdminPage() {
                             <p>User ID: {userPtr.user_id}</p>
                             <p>First Name: {userPtr.fname}</p>
                             <p>Email: {userPtr.email}</p>
-                            <p>Password: {userPtr.pwd_hash}</p>
                             <p>Role ID: {userPtr.role_id}</p>
 
                             <div>
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Edit User")}>Edit</button>
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Delete User")}>Delete</button>
+                                <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Editing User")}>Edit</button>
+                                <button className="shadow-md p-2 rounded m-1" onClick={() => delUser(userPtr.user_id)}>Delete</button>
                             </div>
                         </div>
                     ):(
                         <p className="text-center">Select a user to see details</p>
                     )}
                 </div>
-
             </div>
         </div>
     );
