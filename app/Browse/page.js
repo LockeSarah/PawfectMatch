@@ -14,7 +14,7 @@ export default function BrowsePage() {
     ];
 
     async function fetchData() {
-        var petList = await AllPets();
+        const petList = await AllPets();
         setPets(petList);
         setLength(petList.length);
     }
@@ -39,8 +39,9 @@ export default function BrowsePage() {
                         <p className="text-gray-700">Breed: {pet.pet_breed}</p>
                         <p className="text-gray-700">Age: {pet.pet_age}</p>
                         <p className="text-gray-700">Location: {pet.pet_location}</p>
-                        
-                        <Link href={`/Browse/${pet.pet_id}`}>
+
+                        {/* ✅ Fixed the link path to match your route structure */}
+                        <Link href={`/pet/${pet.pet_id}`}>
                             <button className="bg-green-600 text-white rounded-md p-2 mt-4 hover:bg-green-700 transition">
                                 Adopt {pet.pet_name}
                             </button>
