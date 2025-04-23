@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { GetPet } from "@/app/Services/PetRoutes";
+import { GetPet } from "/app/Services/PetRoutes";
 
 export default function PetDetailsPage() {
     const { id } = useParams();
