@@ -57,15 +57,15 @@ export default function ProfilePage() {
                 ) : (
                     <p className="text-gray-500 text-center">No user data available</p>
                 )}
-                <div className="flex justify-center gap-4 mt-6">
+                <div className="flex justify-center gap-2 mt-6">
                     <button
-                        className="bg-blue-600 text-white rounded-md px-4 py-2 w-full sm:w-auto hover:bg-blue-700 transition duration-300"
+                        className="bg-amber-200 text-white rounded-md px-4 py-2 w-full sm:w-auto hover:bg-blue-700 transition duration-300"
                         onClick={() => alert("Edit User")}
                     >
                         Edit Profile
                     </button>
                     <button
-                        className="bg-red-600 text-white rounded-md px-4 py-2 w-full sm:w-auto hover:bg-red-700 transition duration-300"
+                        className="bg-green-800 text-white rounded-md px-4 py-2 w-full sm:w-auto hover:bg-red-700 transition duration-300"
                         onClick={() => alert("Delete User")}
                     >
                         Delete Account
