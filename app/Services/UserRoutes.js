@@ -25,20 +25,18 @@ async function AllUsers() {
 
 // Display a specific user
 async function GetUser(user_id) {
-    var result;
     try {
-        result = await pool.query("SELECT * FROM users WHERE user_id = ?", [user_id]);
+        const result = await pool.query("SELECT * FROM users WHERE user_id = $1", [user_id]);
+        if (result.rows.length > 0) {
+            return result.rows[0]; // Return the user data
+        } else {
+            console.log("No user found with ID:", user_id);
+            return null;
+        }
     } catch (error) {
         console.error("Query error:", error);
+        return null;
     }
-    let user = {
-        username: result.rows[0].username,
-        fname: result.rows[0].fname,
-        email: result.rows[0].email,
-        pwd: result.rows[0].pwd,
-        role_id: result.rows[0].role_id
-    };
-    return user;
 }
 
 // Add a new user

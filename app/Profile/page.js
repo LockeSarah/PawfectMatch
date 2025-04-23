@@ -1,44 +1,30 @@
 "use client";
 import { useState, useEffect } from "react";
+import { GetUser } from "../Services/UserRoutes.js";
 
 export default function ProfilePage() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    async function fetchUserData() {
-        try {
-            const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
+    useEffect(() => {
+        async function fetchUserData() {
+            const userId = sessionStorage.getItem("logValue"); // Retrieve the logged-in user's ID
             if (!userId) {
-                console.error("User ID not found in localStorage");
-                setLoading(false);
+                alert("No user is logged in.");
                 return;
             }
 
-            const response = await fetch(`/getUser?id=${userId}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                if (data.rows && data.rows.length > 0) {
-                    setUser(data.rows[0]); // Store user data in state
-                } else {
-                    console.error("No user data found");
-                }
-            } else {
-                console.error("Failed to fetch user profile");
+            try {
+                const userData = await GetUser(userId); // Fetch user data from the database
+                setUser(userData);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            } finally {
+                setLoading(false);
             }
-        } catch (error) {
-            console.error("Error fetching user profile:", error);
-        } finally {
-            setLoading(false); // Stop loading spinner
         }
-    }
-    useEffect(() => {
-        fetchUserData(); // Fetch user profile on component mount
+
+        fetchUserData();
     }, []);
 
     if (loading) {
@@ -52,10 +38,9 @@ export default function ProfilePage() {
             <div className="bg-white shadow-md rounded-lg p-6 w-100 text-center">
             {user ? (
                     <>
-                        <p><strong>First Name:</strong> {user.first_name}</p>
-                        <p><strong>Last Name:</strong> {user.last_name}</p>
+                        <p><strong>First Name:</strong> {user.fname}</p>
                         <p><strong>Email:</strong> {user.email}</p>
-                        <p><strong>Password Hash:</strong> {user.password_hash}</p>
+                        <p><strong>Password:</strong> {user.pwd}</p>
                         <p><strong>Role ID:</strong> {user.role_id}</p>
                     </>
                 ) : (
@@ -63,8 +48,8 @@ export default function ProfilePage() {
                 )}
             </div>
             <div>
-                <button className="text-white rounded-md p-2 m-2" onClick={() => alert("Edit User")}>Edit</button>
-                <button className="text-white rounded-md p-2 m-2" onClick={() => alert("Delete User")}>Delete</button>
+                <button className="shadow-md rounded-md p-2 m-2" onClick={() => alert("Edit User")}>Edit</button>
+                <button className="shadow-md rounded-md p-2 m-2" onClick={() => alert("Delete User")}>Delete</button>
             </div>
         </div>
     );
