@@ -80,4 +80,21 @@ async function DeleteUser(user_id) {
     }
 }
 
-export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser };
+// Login function
+async function LoginUser(username) {
+    try {
+        const result = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
+        if (result.rows.length > 0) {
+            console.log("User found:", result.rows[0]); // Log the user data
+            return result.rows[0];
+        } else {
+            console.log("No user found with username:", username);
+            return null;
+        }
+    } catch (error) {
+        console.error("Query error:", error);
+        return null;
+    }
+}
+
+export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser, LoginUser };
