@@ -1,21 +1,22 @@
 "use client";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { GetPet } from "../../Services/PetRoutes";
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";  // Get the dynamic id from URL
+import { GetPet } from "../../Services/PetRoutes";  // Import GetPet function from PetRoutes
 
 export default function PetDetailPage() {
-    const { id } = useParams();  // Get the pet ID from the URL
+    const { id } = useParams();  // Extract the pet id from the URL
     const [pet, setPet] = useState(null);
 
+    // Fetch pet details when component mounts
     useEffect(() => {
-        async function fetchPet() {
-            const data = await GetPet(id); // Fetch the pet details using the ID
-            setPet(data);
+        async function fetchPetDetails() {
+            const petDetails = await GetPet(id);  // Get pet details using the id
+            setPet(petDetails);
         }
-        if (id) fetchPet();
-    }, [id]);
+        if (id) fetchPetDetails();
+    }, [id]);  // Re-fetch pet details if id changes
 
-    if (!pet) return <div className="text-center p-10">Loading pet details...</div>;
+    if (!pet) return <div>Loading...</div>;  // Show loading if pet is not fetched yet
 
     return (
         <div className="min-h-screen p-10 bg-gray-50 flex flex-col items-center">
