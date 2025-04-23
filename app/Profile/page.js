@@ -64,7 +64,7 @@ export default function ProfilePage() {
                 )}
                 <div className="flex justify-center gap-4 mt-6">
                     <button
-                        className="bg-amber-300 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition duration-300"
+                        className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition duration-300"
                         onClick={() => alert("Edit User")}
                     >
                         Edit Profile
@@ -80,7 +80,7 @@ export default function ProfilePage() {
             <img
                 src="https://northwoodsrubberstamps.com/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/p/a/paw-print-border-dd10436.jpg"
                 alt="Right Border"
-                className="hidden sm:block w-12 h-full object-cover"
+                className="hidden sm:block w-50 h-full object-cover"
             />
         </div>
     );
