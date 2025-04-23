@@ -36,20 +36,20 @@ export default function RegisterPage() {
         pwd,
         role_id: userType === "Lister" ? 2 : userType === "Adopter" ? 3 : null
     };
-        async function addUser() {
-            try {
-                const result = await AddUser(formData);
-                if (result) { // Check if the result is truthy
-                    alert("User added successfully.");
-                    window.location.href = "/Login"; // Redirect to login page
-                } else {
-                    alert("Failed to add user.");
-                }
-            } catch (error) {
-                console.error("Error adding user:", error);
-                alert("An error occurred while adding the user.");
+    async function addUser() {
+        try {
+            const result = await AddUser(formData);
+            if (result) { // Check if the result is truthy
+                alert("User added successfully.");
+                window.location.href = "/Login"; // Redirect to login page
+            } else {
+                alert("Failed to add user.");
             }
+        } catch (error) {
+            console.error("Error adding user:", error);
+            alert("An error occurred while adding the user.");
         }
+    }
         
 
     return (
