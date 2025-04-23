@@ -36,7 +36,7 @@ export default function ProfilePage() {
             <img
                 src="https://northwoodsrubberstamps.com/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/p/a/paw-print-border-dd10436.jpg"
                 alt="Left Border"
-                className="hidden sm:block w-12 h-full object-cover"
+                className="hidden sm:block w-50 h-full object-cover"
             />
             <div className="bg-white shadow-lg rounded-xl w-full max-w-md p-6 mx-4">
                 <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">User Profile</h1>
