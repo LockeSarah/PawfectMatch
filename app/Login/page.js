@@ -72,9 +72,11 @@ export default function LoginPage() {
           <p className="px-2">Don't have an account?</p>
           <a href="/Register" className="underline text-blue-600">
             Register
-          </a>
+              </a>
+            </div>
+            
         </div>
       </div>
-    </div>
+    
   );
 }
