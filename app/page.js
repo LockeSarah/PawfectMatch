@@ -30,26 +30,13 @@ export default function Home() {
           </ol>
         </div>
 
-        {/* Login/Register with Cat Image */}
-        <div className="relative">
-          {/* Cat image positioned above the box */}
-          <img 
-            src="https://www.rawpixel.com/search/cat%20transparent?page=1&path=_topics&sort=curated" 
-            alt="Happy Cat"
-            className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-32 h-auto z-10"
-          />
-
-          {/* Login/Register Box */}
-          <div className="bg-amber-200 shadow-md rounded-lg p-6 w-100 relative z-0">
-            <div className="flex justify-center mt-5">
-              <a href="/Login" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Login</a>
-            </div> 
-            <div className="flex justify-center mt-5">
-              <a href="/Register" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Register</a>
-            </div>    
-          </div>
-        </div>
-      </div>
+        {/* Login/Register with Cat Image at Bottom */}
+        <div className="bg-amber-200 shadow-md rounded-lg p-6 w-100 flex flex-col items-center">
+          <div className="flex justify-center mt-5">
+            <a href="/Login" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Login</a>
+          </div> 
     </div>
+  </div>
+</div>
   );
 }
