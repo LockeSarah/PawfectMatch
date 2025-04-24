@@ -35,8 +35,18 @@ export default function Home() {
           <div className="flex justify-center mt-5">
             <a href="/Login" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Login</a>
           </div> 
+          <div className="flex justify-center mt-5">
+            <a href="/Register" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Register</a>
+          </div>  
+
+          {/* Cat image under the box */}
+          <img 
+            src="https://www.citypng.com/public/uploads/preview/happy-bengal-cat-smiling-transparent-background-11662222867uxsklgcdct.png" 
+            alt="Happy Cat"
+            className="mt-6 w-32 h-auto"
+          />
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   );
 }
