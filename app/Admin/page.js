@@ -79,12 +79,12 @@ export default function AdminPage() {
     return (
         <div className="flex flex-col items-center h-screen bg-lime-50">
             <h1 className="text-3xl text-center m-5">Admin Page</h1>
-            
-            <div className="shadow-md rounded-lg p-6 w-100 h-10 flex items-center justify-between m-5 outline-2 outline-black">
-                <input type="text" placeholder="Search" className="border border-gray-300 rounded-md p-2"/>
+{/* ************************************************************ Search Bar ************************************************************ */}
+            <div className="flex justify-center mb-5">
+                <input type="text" placeholder="Search" className="bg-white shadow-md rounded-lg p-6 w-200 h-15"/>
             </div>
-
             <div className="grid grid-cols-4 gap-4">
+{/* ************************************************************ Pet List ************************************************************ */}
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
                     <div className="shadow-md p-2 rounded m-1">
                         <h2>PETS</h2>
@@ -106,29 +106,62 @@ export default function AdminPage() {
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
                     <h3 className="shadow-md p-2 rounded m-1">Pet Details</h3>
                     {petPtr ? (
-                        <div>
-                            <p>Pet ID: {petPtr.pet_id}</p>
-                            <p>Name: {petPtr.pet_name}</p>
-                            <p>Owner: {petPtr.owner_id}</p>
-                            <p>Breed: {petPtr.pet_breed}</p>
-                            <p>Age: {petPtr.pet_age}</p>
-                            <p>Vaccinations: {petPtr.pet_vacc}</p>
-                            <p>Description: {petPtr.pet_desc}</p>
-                            <p>Location: {petPtr.pet_location}</p>
-
-                            <div>
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Edit Pet")}>Edit</button>
+                    <table className="w-full text-left">
+                    <tbody>
+                        <tr>
+                            <td className="font-medium text-gray-600">Pet ID:</td>
+                            <td className="text-gray-800">{petPtr.pet_id}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-medium text-gray-600">Name:</td>
+                            <td className="text-gray-800">{petPtr.pet_name}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-medium text-gray-600">Owner:</td>
+                            <td className="text-gray-800">{petPtr.owner_id}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-medium text-gray-600">Breed:</td>
+                            <td className="text-gray-800">{petPtr.pet_breed}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-medium text-gray-600">Age:</td>
+                            <td className="text-gray-800">{petPtr.pet_age}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-medium text-gray-600">Vaccinations:</td>
+                            <td className="text-gray-800">{petPtr.pet_vacc}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-medium text-gray-600">Description:</td>
+                            <td className="text-gray-800">{petPtr.pet_desc}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-medium text-gray-600">Location:</td>
+                            <td className="text-gray-800">{petPtr.pet_location}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colSpan="2" className="text-center">
+                                <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Editing Pet")}>Edit</button>
                                 <button className="shadow-md p-2 rounded m-1" onClick={() => {
-                                    console.log("Deleting pet with ID:", petPtr.pet_id); // Log the pet_id
-                                    delPet(petPtr.pet_id);
-                                }}>Delete</button>                            
-                            </div>
-                        </div>
-                    ):(
-                        <p className="text-center">Select a pet to see details</p>
-                    )}
-                </div>
-                
+                                    if (petPtr) {
+                                        delPet(petPtr.pet_id);
+                                    } else {
+                                        alert("No pet selected");
+                                    }
+                                }}>Delete</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                ):(
+                    <p className="text-center">Select a pet to see details</p>
+                )}
+            </div>
+
+{/* ************************************************************ User List ************************************************************ */}
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
                     <div className="shadow-md p-2 rounded m-1">
                         <h2>USERS</h2>
@@ -150,23 +183,44 @@ export default function AdminPage() {
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
                     <h3 className="shadow-md p-2 rounded m-1">User Details</h3>
                     {userPtr ? (
-                        <div>
-                            <p>User ID: {userPtr.user_id}</p>
-                            <p>First Name: {userPtr.fname}</p>
-                            <p>Email: {userPtr.email}</p>
-                            <p>Role ID: {userPtr.role_id}</p>
-
-                            <div>
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Editing User")}>Edit</button>
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => {
-                                    if (userPtr) {
-                                        delUser(userPtr.user_id);
-                                    } else {
-                                        alert("No user selected");
-                                    }
-                                }}>Delete</button>
-                            </div>
-                        </div>
+                        <table className="w-full text-left">
+                            <tbody>
+                                <tr>
+                                    <td className="font-medium text-gray-600">User ID:</td>
+                                    <td className="text-gray-800">{userPtr.user_id}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium text-gray-600">Name:</td>
+                                    <td className="text-gray-800">{userPtr.fname}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium text-gray-600">Username:</td>
+                                    <td className="text-gray-800">{userPtr.username}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium text-gray-600">Email:</td>
+                                    <td className="text-gray-800">{userPtr.email}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium text-gray-600">Role ID:</td>
+                                    <td className="text-gray-800">{userPtr.role_id}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colSpan="2" className="text-center">
+                                        <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Editing Pet")}>Edit</button>
+                                        <button className="shadow-md p-2 rounded m-1" onClick={() => {
+                                            if (petPtr) {
+                                                delPet(petPtr.pet_id);
+                                            } else {
+                                                alert("No pet selected");
+                                            }
+                                        }}>Delete</button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     ):(
                         <p className="text-center">Select a user to see details</p>
                     )}

@@ -39,9 +39,9 @@ export default function RegisterPage() {
     async function addUser() {
         try {
             const result = await AddUser(formData);
-            if (result) { // Check if the result is truthy
+            if (result) {
                 alert("User added successfully.");
-                window.location.href = "/Login"; // Redirect to login page
+                window.location.href = "/Login";
             } else {
                 alert("Failed to add user.");
             }
@@ -50,7 +50,6 @@ export default function RegisterPage() {
             alert("An error occurred while adding the user.");
         }
     }
-        
 
     return (
         <div className="flex flex-col items-center h-screen bg-lime-100">

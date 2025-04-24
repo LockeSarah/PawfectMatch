@@ -6,6 +6,7 @@ import { AllPets } from "../Services/PetRoutes";
 export default function BrowsePage() {
     const [pets, setPets] = useState([]);
     const [length, setLength] = useState(-1);
+    const [logStatus, setLogStatus] = useState(0);
 
     const defaultImages = [
         "https://images.pexels.com/photos/18158761/pexels-photo-18158761/free-photo-of-ginger-cat-sitting-behind-metal-mesh.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -39,7 +40,6 @@ export default function BrowsePage() {
                         <p className="text-gray-700">Breed: {pet.pet_breed}</p>
                         <p className="text-gray-700">Age: {pet.pet_age}</p>
                         <p className="text-gray-700">Location: {pet.pet_location}</p>
-                        
                         <Link href={`/pet/${pet.pet_id}`}>
                             <button className="bg-green-600 text-white rounded-md p-2 mt-4 hover:bg-green-700 transition">
                                 Adopt {pet.pet_name}

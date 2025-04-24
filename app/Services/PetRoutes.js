@@ -45,23 +45,25 @@ async function GetPet(pet_id) {
         pet_age: result.rows[0].pet_age,
         pet_vacc: result.rows[0].pet_vacc,
         pet_desc: result.rows[0].pet_desc,
-        pet_location: result.rows[0].pet_location
+        pet_location: result.rows[0].pet_location,
+        pet_image_url: result.rows[0].pet_image_url
     };
     return pet;
 };
 
 // Add a new pet
 async function AddPet(pet) {
-    var result;
     try {
-        result = await pool.query("INSERT INTO pets"
-            + "(owner_id, pet_type, pet_name, pet_breed, pet_age, pet_vacc, pet_desc, pet_location)" 
-            + "VALUES ($1, $2, $3, $4, $5, $6, $7, $8)", 
-            [pet.owner_id, pet.pet_type, pet.pet_name, pet.pet_breed, pet.pet_age, pet.pet_vacc, pet.pet_desc, pet.pet_location]);
+        const result = await pool.query(
+            "INSERT INTO pets (owner_id, pet_type, pet_name, pet_breed, pet_age, pet_vacc, pet_desc, pet_location, pet_image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+            [pet.owner_id, pet.pet_type, pet.pet_name, pet.pet_breed, pet.pet_age, pet.pet_vacc, pet.pet_desc, pet.pet_location, pet.pet_image_url]
+        );
+        console.log("Pet added successfully:", result.rows[0]);
+        return result.rows[0]; // Return the inserted user
     } catch (error) {
         console.error("Query error:", error);
+        return null; // Return null in case of an error
     }
-    return result;
 };
 
 // Update a pet
