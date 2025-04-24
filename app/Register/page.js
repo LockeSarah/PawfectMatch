@@ -89,13 +89,8 @@ export default function RegisterPage() {
                         <p className="px-2">Already have an account?</p>
                         <a href="/Login" className="text-decoration-line: underline">Login</a>
                     </div>
-                    <div className="flex justify-center mt-5">
-              <img
-              src="https://pngtree.com/freepng/happy-smile-cat-images_14687368.html"
-              alt="Login Illustration"
-              className="w-40 h-40 object-cover rounded-full"
-              />
-            </div>
+                    
+              
                 </form>
             </div>
         </div>
