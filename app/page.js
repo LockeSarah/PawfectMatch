@@ -34,7 +34,7 @@ export default function Home() {
         <div className="relative">
           {/* Cat image positioned above the box */}
           <img 
-            src="https://www.citypng.com/public/uploads/preview/happy-bengal-cat-smiling-transparent-background-11662222867uxsklgcdct.png" 
+            src="https://www.citypng.com/photo/9c1434ba/happy-bengal-cat-smiling-transparent-background" 
             alt="Happy Cat"
             className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-32 h-auto z-10"
           />
