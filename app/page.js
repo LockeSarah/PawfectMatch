@@ -41,8 +41,8 @@ export default function Home() {
 
           {/* Cat image under the box */}
           <img 
-            src="https://www.pngfind.com/pngs/m/67-672063_cat-silhouette-png-siluetas-de-gatos-png-transparent.png" 
-            alt="black Cat"
+            src="https://clipart-library.com/img/1020798.png" 
+            alt="new Cat"
             className="mt-6 w-32 h-auto"
 />
         </div>
