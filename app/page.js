@@ -41,8 +41,8 @@ export default function Home() {
 
           {/* Cat image under the box */}
           <img 
-            src="https://www.citypng.com/public/uploads/preview/happy-bengal-cat-smiling-transparent-background-7358116966824730r64afokjz.png" 
-            alt="beng Cat"
+            src="https://www.pngfind.com/pngs/m/67-672063_cat-silhouette-png-siluetas-de-gatos-png-transparent.png" 
+            alt="black Cat"
             className="mt-6 w-32 h-auto"
 />
         </div>
