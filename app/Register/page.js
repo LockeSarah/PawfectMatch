@@ -54,7 +54,7 @@ export default function RegisterPage() {
     return (
         <div className="flex flex-col items-center h-screen bg-amber-100">
             <div className="bg-white shadow-md rounded-lg p-6 w-100 mt-10">
-            <h2 className="text-2xl text-center mb-5">Register</h2>
+            <h2 className="text-3xl font-semibold text-center text-gray-800 mb-5">Register</h2>
                 <form onSubmit={submitForm}>
                     <div>
                         <input type="text" id="fname" placeholder="First Name" value={fname} onChange={(e) => setFname(e.target.value)}

@@ -71,9 +71,9 @@ export default function AddPetPage() {
     }
 
     return (
-        <div className="flex flex-col items-center h-screen bg-lime-100">
-            <h1 className="text-3xl m-5">List a Pet</h1>
-            <div className="bg-white shadow-md rounded-lg p-6 w-100">
+        <div className="flex flex-col items-center h-screen bg-amber-100">
+            <div className="bg-white shadow-md rounded-lg p-6 w-100 mt-10">
+            <h2 className="text-3xl font-semibold text-center text-gray-800 mb-5">List a Pet</h2>
                 <form onSubmit={submitForm}>
                     <div>
                         <input type="text" id="pet_type" placeholder="Pet Type" value={petType} onChange={(e) => setPetType(e.target.value)}
@@ -103,12 +103,8 @@ export default function AddPetPage() {
                         <input type="text" id="pet_location" placeholder="Pet Location" value={petLocation} onChange={(e) => setPetLocation(e.target.value)}
                         className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"/>
                     </div>
-                    {/* <div>
-                        <input type="text" id="pet_image_url" placeholder="Pet Image URL" value={petImage} onChange={(e) => setPetImage(e.target.value)}
-                        className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"/>
-                    </div> */}
                     <div className="flex justify-center">
-                        <button type="submit" className="shadow-md p-2 rounded" value="Submit" onClick={() => {addPet(formData)}}>List Pet</button>
+                        <button type="submit" className="bg-green-800 text-white shadow-md p-2 rounded w-full hover:bg-green-700 transition" value="Submit" onClick={() => {addPet(formData)}}>List Pet</button>
                     </div>
                 </form>
             </div>

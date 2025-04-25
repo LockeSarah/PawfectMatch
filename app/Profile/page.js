@@ -1,49 +1,62 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
-import { GetUser } from "../Services/UserRoutes.js";
+import { GetUser, DeleteUser } from "../Services/UserRoutes.js";
 
 export default function ProfilePage() {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        async function fetchUserData() {
-            const userId = sessionStorage.getItem("logValue");
-            if (!userId) {
-                alert("No user is logged in.");
-                return;
-            }
-
-            try {
-                const userData = await GetUser(userId);
-                console.log(sessionStorage.getItem("logValue"));
-                setUser(userData);
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-            } finally {
-                setLoading(false);
-            }
+    async function fetchUserData(user_id) {
+        if (!user_id) {
+            alert("No user ID provided.");
+            return;
         }
+        try {
+            const result = await GetUser(user_id); // Call the GetUser function
+            if (result) {
+                setUser(result); // Update the user state with the fetched data
+            } else {
+                alert("User not found.");
+            }
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+            alert("An error occurred while fetching user data.");
+        }
+    }
 
-        fetchUserData();
-    }, []);
     useEffect(() => {
-        console.log("Updated user state:", user); // Log the updated user state
-    }, [user]);
+        const loggedInUserId = sessionStorage.getItem("userId"); // Retrieve userId from sessionStorage
+        if (loggedInUserId) {
+            fetchUserData(loggedInUserId); // Fetch data for the logged-in user
+        } else {
+            alert("No logged-in user found. Please log in.");
+            window.location.href = "/Login"; // Redirect to login page if no userId is found
+        }
+    }, []);
 
-    if (loading) {
-        return <p className="text-center">Loading...</p>;
+    async function delUser(user_id) {
+        if (!user_id) {
+            alert("No user ID provided.");
+            return;
+        }
+        try {
+            const result = await DeleteUser(user_id); // Call the DeleteUser function
+            if (result && result.rowCount > 0) {
+                alert("Account deleted successfully.");
+                sessionStorage.clear(); // Clear sessionStorage to log the user out
+                window.location.href = "/"; // Redirect to the home page
+            } else {
+                alert("Failed to delete account.");
+            }
+        } catch (error) {
+            console.error("Error deleting account:", error);
+            alert("An error occurred while deleting the account.");
+        }
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-50 px-4">
-            <img
-                src="https://northwoodsrubberstamps.com/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/p/a/paw-print-border-dd10436.jpg"
-                alt="Left Border"
-                className="hidden sm:block w-50 h-full object-cover"
-            />
-            <div className="bg-white shadow-lg rounded-xl w-full max-w-md p-6 mx-4">
-                <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">User Profile</h1>
+        <div className="flex flex-col items-center h-screen bg-amber-100">
+            <div className="bg-white shadow-lg rounded-xl w-100 max-w-md p-6 mt-10">
+                <h1 className="text-3xl font-semibold text-center text-gray-800 mb-5">User Profile</h1>
                 {user ? (
                     <div className="space-y-4">
                         <div className="flex justify-between">
@@ -67,25 +80,18 @@ export default function ProfilePage() {
                     <p className="text-gray-500 text-center">No user data available</p>
                 )}
                 <div className="flex justify-center gap-4 mt-6">
-                    <button
-                        className="bg-green-700 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition duration-300"
-                        onClick={() => alert("Edit User")}
-                    >
+                    <button 
+                        className="bg-green-800 text-white shadow-md px-4 py-2 rounded hover:bg-green-700 transition" 
+                        onClick={() => alert("Edit User")}>
                         Edit Profile
                     </button>
                     <button
-                        className="bg-red-600 text-white rounded-md px-4 py-2 hover:bg-red-700 transition duration-300"
-                        onClick={() => alert("Delete User")}
-                    >
+                        className="bg-red-600 text-white rounded-md px-4 py-2 hover:bg-red-700 transition"
+                        onClick={() => delUser(user.user_id)}>
                         Delete Account
                     </button>
                 </div>
             </div>
-            <img
-                src="https://northwoodsrubberstamps.com/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/p/a/paw-print-border-dd10436.jpg"
-                alt="Right Border"
-                className="hidden sm:block w-50 h-full object-cover"
-            />
         </div>
     );
 }

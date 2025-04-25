@@ -7,6 +7,7 @@ export default function LoginPage() {
   const [pwd, setPwd] = useState("");
   const [logStatus, setLogStatus] = useState(0);
   const [userRole, setUserRole] = useState(0);
+  const [user, setUser] = useState(null);
 
   async function handleLogin() {
     if (!uname || !pwd) {
@@ -17,6 +18,7 @@ export default function LoginPage() {
     const user = await LoginUser(uname);
     if (user && user.pwd === pwd) {
         sessionStorage.setItem("logValue", user.role_id);
+        sessionStorage.setItem("userId", user.user_id);
         setLogStatus(user.role_id);
         setUserRole(user.role_id);
         alert("Login successful");
@@ -38,7 +40,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col items-center h-screen bg-amber-100">
       <div className="bg-white shadow-md rounded-lg p-6 w-100 mt-10">
-        <h2 className="text-2xl text-center mb-5">Login</h2>
+        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-5">Login</h2>
           <input type="text" id="username" placeholder="Username" className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center" value={uname} onChange={(e) => setUname(e.target.value)} />
           <input type="password" id="password" placeholder="Password" className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center" value={pwd} onChange={(e) => setPwd(e.target.value)} />
           <button type="button" className="bg-green-800 text-white shadow-md p-2 rounded w-full hover:bg-green-700 transition" onClick={handleLogin}> Login </button>

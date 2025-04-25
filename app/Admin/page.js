@@ -140,8 +140,8 @@ export default function AdminPage() {
                     <tfoot>
                         <tr>
                             <td colSpan="2" className="text-center">
-                                <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => alert("Editing Pet")}>Edit</button>
-                                <button className="bg-green-800 text-white shadow-md p-2 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => {
+                                {/* <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => alert("Editing Pet")}>Edit</button> */}
+                                <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => {
                                     if (petPtr) {
                                         delPet(petPtr.pet_id);
                                     } else {
@@ -156,7 +156,6 @@ export default function AdminPage() {
                     <p className="text-center">Select a pet to see details</p>
                 )}
             </div>
-
 {/* ************************************************************ User List ************************************************************ */}
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
                     <div className="shadow-md p-2 rounded m-1">
@@ -205,12 +204,12 @@ export default function AdminPage() {
                             <tfoot>
                                 <tr>
                                     <td colSpan="2" className="text-center">
-                                        <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => alert("Editing Pet")}>Edit</button>
-                                        <button className="bg-green-800 text-white shadow-md p-2 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => {
-                                            if (petPtr) {
-                                                delPet(petPtr.pet_id);
+                                        {/* <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => alert("Editing Pet")}>Edit</button> */}
+                                        <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => {
+                                            if (userPtr) {
+                                                delUser(userPtr.user_id);
                                             } else {
-                                                alert("No pet selected");
+                                                alert("No user selected");
                                             }
                                         }}>Delete</button>
                                     </td>
