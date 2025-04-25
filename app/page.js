@@ -43,7 +43,7 @@ export default function Home() {
   <img 
     src="https://clipart-library.com/images/kT8oGE7Lc.png" 
     alt="again Cat"
-    className="absolute -bottom-4 w-28 h-auto mx-auto left-1/2 transform -translate-x-1/2"
+    className="absolute -bottom-1 w-28 h-auto mx-auto left-1/2 transform -translate-x-1/2"
   />
 </div>
         </div>
