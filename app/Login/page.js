@@ -8,26 +8,6 @@ export default function LoginPage() {
   const [logStatus, setLogStatus] = useState(0);
   const [userRole, setUserRole] = useState(0);
 
-  // function handleLogin() {
-  //   if (uname.trim() === "admin" && pwd.trim() === "admin") {
-  //     sessionStorage.setItem("logValue", 1);
-  //     setLogStatus(1);
-  //     setUserRole(1);
-  //     alert("Admin Login");
-  //   } else if (uname.trim() === "lister" && pwd.trim() === "lister") {
-  //     sessionStorage.setItem("logValue", 2);
-  //     setLogStatus(2);
-  //     setUserRole(2);
-  //     alert("Lister Login");
-  //   } else if (uname.trim() === "adopter" && pwd.trim() === "adopter") {
-  //     sessionStorage.setItem("logValue", 3);
-  //     setLogStatus(3);
-  //     setUserRole(3);
-  //     alert("Adopter Login");
-  //   } else {
-  //     alert("Invalid username or password");
-  //   }
-  // }
   async function handleLogin() {
     if (!uname || !pwd) {
         alert("Please enter both username and password.");
