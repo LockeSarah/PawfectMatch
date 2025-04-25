@@ -41,8 +41,8 @@ export default function Home() {
 
           {/* Cat image under the box */}
           <img 
-            src="https://www.pexels.com/photo/shallow-focus-of-cat-face-54632/" 
-            alt="Happy Cat"
+            src="https://images.pexels.com/photos/54632/cat-animal-eyes-grey-54632.jpeg" 
+            alt="new Cat"
             className="mt-6 w-32 h-auto"
           />
         </div>
