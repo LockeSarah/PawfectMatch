@@ -77,12 +77,8 @@ export default function AdminPage() {
     }, []);
 
     return (
-        <div className="flex flex-col items-center h-screen bg-lime-50">
-            <h1 className="text-3xl text-center m-5">Admin Page</h1>
-{/* ************************************************************ Search Bar ************************************************************ */}
-            <div className="flex justify-center mb-5">
-                <input type="text" placeholder="Search" className="bg-white shadow-md rounded-lg p-6 w-200 h-15"/>
-            </div>
+        <div className="flex flex-col items-center h-screen bg-amber-100">
+            <h1 className="bg-white shadow-md rounded-lg p-6 w-80 text-center text-3xl m-5">Admin Page</h1>
             <div className="grid grid-cols-4 gap-4">
 {/* ************************************************************ Pet List ************************************************************ */}
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
@@ -144,8 +140,8 @@ export default function AdminPage() {
                     <tfoot>
                         <tr>
                             <td colSpan="2" className="text-center">
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Editing Pet")}>Edit</button>
-                                <button className="shadow-md p-2 rounded m-1" onClick={() => {
+                                <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => alert("Editing Pet")}>Edit</button>
+                                <button className="bg-green-800 text-white shadow-md p-2 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => {
                                     if (petPtr) {
                                         delPet(petPtr.pet_id);
                                     } else {
@@ -209,8 +205,8 @@ export default function AdminPage() {
                             <tfoot>
                                 <tr>
                                     <td colSpan="2" className="text-center">
-                                        <button className="shadow-md p-2 rounded m-1" onClick={() => alert("Editing Pet")}>Edit</button>
-                                        <button className="shadow-md p-2 rounded m-1" onClick={() => {
+                                        <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => alert("Editing Pet")}>Edit</button>
+                                        <button className="bg-green-800 text-white shadow-md p-2 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => {
                                             if (petPtr) {
                                                 delPet(petPtr.pet_id);
                                             } else {

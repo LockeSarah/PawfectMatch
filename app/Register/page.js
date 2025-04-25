@@ -88,8 +88,6 @@ export default function RegisterPage() {
                         <p className="px-2">Already have an account?</p>
                         <a href="/Login" className="underline text-blue-600">Login</a>
                     </div>
-                    
-              
                 </form>
             </div>
         </div>
