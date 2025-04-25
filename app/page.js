@@ -41,10 +41,10 @@ export default function Home() {
 
           {/* Cat image under the box */}
           <img 
-            src="https://images.pexels.com/photos/54632/cat-animal-eyes-grey-54632.jpeg" 
-            alt="new Cat"
+            src="https://www.citypng.com/public/uploads/preview/happy-bengal-cat-smiling-transparent-background-7358116966824730r64afokjz.png" 
+            alt="beng Cat"
             className="mt-6 w-32 h-auto"
-          />
+/>
         </div>
       </div>
     </div>
