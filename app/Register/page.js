@@ -52,9 +52,9 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="flex flex-col items-center h-screen bg-lime-100">
-            <h1 className="text-3xl m-5">Register</h1>
-            <div className="bg-white shadow-md rounded-lg p-6 w-100">
+        <div className="flex flex-col items-center h-screen bg-amber-100">
+            <div className="bg-white shadow-md rounded-lg p-6 w-100 mt-10">
+            <h2 className="text-2xl text-center mb-5">Register</h2>
                 <form onSubmit={submitForm}>
                     <div>
                         <input type="text" id="fname" placeholder="First Name" value={fname} onChange={(e) => setFname(e.target.value)}
@@ -82,11 +82,11 @@ export default function RegisterPage() {
                         {/* </select> */}
                     </div>
                     <div className="flex justify-center">
-                        <button type="submit" className="shadow-md p-2 rounded" value="Submit" onClick={() => {addUser(formData)}}>Register</button>
+                        <button type="submit" className="bg-green-800 text-white shadow-md p-2 rounded w-full hover:bg-green-700 transition" value="Submit" onClick={() => {addUser(formData)}}>Register</button>
                     </div>
                     <div className="flex justify-center mt-5">
                         <p className="px-2">Already have an account?</p>
-                        <a href="/Login" className="text-decoration-line: underline">Login</a>
+                        <a href="/Login" className="underline text-blue-600">Login</a>
                     </div>
                     
               
