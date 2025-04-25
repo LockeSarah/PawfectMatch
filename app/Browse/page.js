@@ -1,10 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { AllPets } from "../Services/PetRoutes";
+import { GetUserEmail } from "../Services/UserRoutes";
 
 export default function BrowsePage() {
     const [pets, setPets] = useState([]);
+    const [user, setUser] = useState(null);
     const [length, setLength] = useState(-1);
     const [logStatus, setLogStatus] = useState(0);
 
@@ -24,6 +25,29 @@ export default function BrowsePage() {
         fetchData();
     }, []);
 
+    // Get user email by user_id
+    async function adoptPet(petId, ownerId) {
+        const userId = sessionStorage.getItem("logValue");
+        if (!userId) {
+            alert("No user is logged in. Redirecting to login page...");
+            window.location.href = "/Login"; // Redirect to login page
+            return;
+        }
+    
+        try {
+            // Call GetUserEmail to retrieve the owner's email
+            const ownerEmail = await GetUserEmail(ownerId);
+            if (ownerEmail) {
+                alert(`Please email the pet owner at ${ownerEmail} to proceed with the adoption.`);
+            } else {
+                alert("Unable to retrieve the owner's email. Please try again later.");
+            }
+        } catch (error) {
+            console.error("Error retrieving owner's email:", error);
+            alert("An error occurred while retrieving the owner's email. Please try again later.");
+        }
+    }
+
     return (
         <div className="flex flex-col items-center min-h-screen bg-gray-100">
             <h1 className="text-3xl text-center m-5">Browse</h1>
@@ -40,11 +64,9 @@ export default function BrowsePage() {
                         <p className="text-gray-700">Breed: {pet.pet_breed}</p>
                         <p className="text-gray-700">Age: {pet.pet_age}</p>
                         <p className="text-gray-700">Location: {pet.pet_location}</p>
-                        <Link href={`/pet/${pet.pet_id}`}>
-                            <button className="bg-green-600 text-white rounded-md p-2 mt-4 hover:bg-green-700 transition">
-                                Adopt {pet.pet_name}
-                            </button>
-                        </Link>
+                        <button className="bg-green-600 text-white rounded-md p-2 mt-4 hover:bg-green-700 transition"
+                            onClick={() => adoptPet(pet.pet_id, pet.owner_id)}> Adopt {pet.pet_name}
+                        </button>
                     </div>
                 ))}
             </div>

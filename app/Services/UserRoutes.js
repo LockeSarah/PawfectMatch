@@ -95,4 +95,20 @@ async function LoginUser(username) {
     }
 }
 
-export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser, LoginUser };
+// Get user email by user_id
+async function GetUserEmail(userID) {
+    try {
+        const result = await pool.query("SELECT email FROM users WHERE user_id = $1", [userID]); // Use userID as the parameter
+        if (result.rows.length > 0) {
+            return result.rows[0].email; // Return only the email
+        } else {
+            console.log("No user found with user_id:", userID);
+            return null;
+        }
+    } catch (error) {
+        console.error("Query error:", error);
+        return null;
+    }
+}
+
+export { AllUsers, GetUser, AddUser, UpdateUser, DeleteUser, LoginUser, GetUserEmail };

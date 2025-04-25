@@ -12,12 +12,12 @@ export default function AddPetPage() {
     const [petVacc, setPetVacc] = useState("");
     const [petDesc, setPetDesc] = useState("");
     const [petLocation, setPetLocation] = useState("");
-    const [petImage, setPetImage] = useState("");
+    // const [petImage, setPetImage] = useState("");
 
     const submitForm = async (e) => {
         e.preventDefault();
 
-        if (!petType || !petName || !petBreed || !petAge || !petVacc || !petDesc || !petLocation || !petImage) {
+        if (!petType || !petName || !petBreed || !petAge || !petVacc || !petDesc || !petLocation) {
             alert("Please fill in all fields.");
             return;
         }
@@ -53,7 +53,7 @@ export default function AddPetPage() {
         pet_vacc: petVacc,
         pet_desc: petDesc,
         pet_location: petLocation,
-        pet_image_url: petImage
+        // pet_image_url: petImage
     }
     async function addPet() {
         try {
@@ -103,10 +103,10 @@ export default function AddPetPage() {
                         <input type="text" id="pet_location" placeholder="Pet Location" value={petLocation} onChange={(e) => setPetLocation(e.target.value)}
                         className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"/>
                     </div>
-                    <div>
+                    {/* <div>
                         <input type="text" id="pet_image_url" placeholder="Pet Image URL" value={petImage} onChange={(e) => setPetImage(e.target.value)}
                         className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"/>
-                    </div>
+                    </div> */}
                     <div className="flex justify-center">
                         <button type="submit" className="shadow-md p-2 rounded" value="Submit" onClick={() => {addPet(formData)}}>List Pet</button>
                     </div>

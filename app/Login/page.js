@@ -32,6 +32,7 @@ export default function LoginPage() {
     } else {
         alert("Invalid username or password");
     }
+    console.log(sessionStorage.getItem("logValue"));
   }
 
   return (

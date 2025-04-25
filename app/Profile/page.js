@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { GetUser } from "../Services/UserRoutes.js";
 
 export default function ProfilePage() {
@@ -16,6 +16,7 @@ export default function ProfilePage() {
 
             try {
                 const userData = await GetUser(userId);
+                console.log(sessionStorage.getItem("logValue"));
                 setUser(userData);
             } catch (error) {
                 console.error("Error fetching user data:", error);
@@ -26,6 +27,9 @@ export default function ProfilePage() {
 
         fetchUserData();
     }, []);
+    useEffect(() => {
+        console.log("Updated user state:", user); // Log the updated user state
+    }, [user]);
 
     if (loading) {
         return <p className="text-center">Loading...</p>;
