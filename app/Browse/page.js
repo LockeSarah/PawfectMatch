@@ -35,7 +35,6 @@ export default function BrowsePage() {
             window.location.href = "/Login"; // Redirect to login page
             return;
         }
-    
         try {
             // Call GetUserEmail to retrieve the owner's email
             const ownerEmail = await GetUserEmail(ownerId);
@@ -49,9 +48,8 @@ export default function BrowsePage() {
             alert("An error occurred while retrieving the owner's email. Please try again later.");
         }
     }
-
     return (
-        <div className="flex flex-col items-center min-h-screen bg-gray-100">
+        <div className="flex flex-col items-center min-h-screen bg-amber-100">
             <h1 className="text-3xl text-center m-5">Browse</h1>
             <h2 className="text-xl text-center mb-5">Total Pets Available: {length}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 w-full max-w-6xl">
@@ -66,7 +64,7 @@ export default function BrowsePage() {
                         <p className="text-gray-700">Breed: {pet.pet_breed}</p>
                         <p className="text-gray-700">Age: {pet.pet_age}</p>
                         <p className="text-gray-700">Location: {pet.pet_location}</p>
-                        <button className="bg-green-600 text-white rounded-md p-2 mt-4 hover:bg-green-700 transition"
+                        <button className="bg-green-800 text-white rounded-md p-2 mt-4 hover:bg-green-700 transition"
                             onClick={() => adoptPet(pet.pet_id, pet.owner_id)}> Adopt {pet.pet_name}
                         </button>
                     </div>
