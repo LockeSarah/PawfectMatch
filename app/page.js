@@ -42,8 +42,8 @@ export default function Home() {
   {/* Cat image sitting on the bottom edge */}
   <img 
     src="https://clipart-library.com/images/kT8oGE7Lc.png" 
-    alt="new Cat"
-    className="absolute -bottom-6 w-28 h-auto mx-auto left-1/2 transform -translate-x-1/2"
+    alt="again Cat"
+    className="absolute -bottom-4 w-28 h-auto mx-auto left-1/2 transform -translate-x-1/2"
   />
 </div>
         </div>
