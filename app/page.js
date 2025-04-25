@@ -30,23 +30,24 @@ export default function Home() {
           </ol>
         </div>
 
-        {/* Login/Register with Cat Image at Bottom */}
-        <div className="bg-amber-200 shadow-md rounded-lg p-6 w-100 flex flex-col items-center">
-          <div className="flex justify-center mt-5">
-            <a href="/Login" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Login</a>
-          </div> 
-          <div className="flex justify-center mt-5">
-            <a href="/Register" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Register</a>
-          </div>  
+       {/* Login/Register with Cat on the edge */}
+<div className="bg-amber-200 shadow-md rounded-lg p-6 w-100 flex flex-col items-center relative">
+  <div className="flex justify-center mt-5">
+    <a href="/Login" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Login</a>
+  </div> 
+  <div className="flex justify-center mt-5">
+    <a href="/Register" className="bg-green-800 text-white shadow-md p-2 rounded hover:bg-green-700 transition">Register</a>
+  </div>  
 
-          {/* Cat image under the box */}
-          <img 
-            src="https://pngtree.com/freepng/happy-smile-cat-images_14687368.html" 
-            alt="Happy Cat"
-            className="mt-6 w-32 h-auto"
-          />
+  {/* Cat image sitting on the bottom edge */}
+  <img 
+    src="https://clipart-library.com/images/kT8oGE7Lc.png" 
+    alt="again Cat"
+    className="absolute -bottom-1 w-28 h-auto mx-auto left-1/2 transform -translate-x-1/2"
+  />
+</div>
         </div>
       </div>
-    </div>
+    
   );
 }
