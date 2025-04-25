@@ -40,11 +40,12 @@ export default function Home() {
           </div>  
 
           {/* Cat image under the box */}
-          <img 
-            src="https://clipart-library.com/img/1020798.png" 
-            alt="new Cat"
-            className="mt-6 w-32 h-auto"
+      <img 
+        src="https://clipart-library.com/images/kT8oGE7Lc.png" 
+        alt="new Cat"
+        className="mt-16 w-32 h-auto mx-auto"
 />
+
         </div>
       </div>
     </div>
