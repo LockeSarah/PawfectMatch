@@ -12,7 +12,8 @@ export default function BrowsePage() {
         "https://images.pexels.com/photos/18158761/pexels-photo-18158761/free-photo-of-ginger-cat-sitting-behind-metal-mesh.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         "https://www.thesprucepets.com/thmb/VkoI1kidVIiQQnAezIYE_IPU-D8=/2781x0/filters:no_upscale():strip_icc()/pitbull-dog-breeds-4843994-hero-db6922b6c8294b45b19c07aff5865790.jpg",
         "https://brooklinelabrescue.org/wp-content/uploads/2024/02/IMG_0561.jpeg",
-       " https://staffordanimalshelter.org/content/home-sp/ic_1677542731_620x400_true.webp"
+       " https://staffordanimalshelter.org/content/home-sp/ic_1677542731_620x400_true.webp",
+       "https://tails.com/blog/wp-content/uploads/2022/06/Image-from-iOS-32-scaled.jpg"
     ];
 
     async function fetchData() {
