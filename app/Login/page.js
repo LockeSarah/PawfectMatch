@@ -36,48 +36,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col items-center h-screen bg-gray-100">
-      <h1 className="text-3xl m-5">Login</h1>
-      <div className="bg-white shadow-md rounded-lg p-6 w-80">
-        <h2 className="text-2xl text-center mb-5">Login</h2>
-        <div>
-          <input
-            type="text"
-            id="username"
-            placeholder="Username"
-            className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"
-            value={uname}
-            onChange={(e) => setUname(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"
-            value={pwd}
-            onChange={(e) => setPwd(e.target.value)}
-          />
-        </div>
-        <div className="flex justify-center">
-          <button
-            type="button"
-            className="bg-green-700 text-white shadow-md p-2 rounded w-full"
-            onClick={handleLogin}
-          >
-            Login
-          </button>
-        </div>
-        <div className="flex justify-center mt-5">
+    <div className="flex flex-col items-center h-screen bg-amber-100">
+      <div className="bg-white shadow-md rounded-lg p-6 w-100 h-100 mt-20 ">
+        <h2 className="text-2xl text-center mb-10">Login</h2>
+          <input type="text" id="username" placeholder="Username" className="border border-gray-300 rounded-md p-2 w-full mt-5 mb-5 text-center" value={uname} onChange={(e) => setUname(e.target.value)} />
+          <input type="password" id="password" placeholder="Password" className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center" value={pwd} onChange={(e) => setPwd(e.target.value)} />
+          <button type="button" className="bg-green-800 text-white shadow-md p-2 rounded w-full mt-15 hover:bg-green-700 transition" onClick={handleLogin}> Login </button>
+        <div className="flex justify-center m-5">
           <p className="px-2">Don't have an account?</p>
-          <a href="/Register" className="underline text-blue-600">
-            Register
-              </a>
-            </div>
-            
+          <a href="/Register" className="underline text-blue-600"> Register </a>
         </div>
       </div>
-    
+    </div>
   );
 }
