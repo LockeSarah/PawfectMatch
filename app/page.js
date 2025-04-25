@@ -41,7 +41,7 @@ export default function Home() {
 
           {/* Cat image under the box */}
           <img 
-            src="https://pngtree.com/freepng/happy-smile-cat-images_14687368.html" 
+            src="https://www.pexels.com/photo/shallow-focus-of-cat-face-54632/" 
             alt="Happy Cat"
             className="mt-6 w-32 h-auto"
           />
