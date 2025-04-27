@@ -33,34 +33,35 @@ export default function AddPetPage() {
             alert("Pet Age: Must be a number");
             return;
         }
-    }
+        const formData = {
+            owner_id: ownerID,
+            pet_type: petType === "Cat" ? 1 : petType === "Dog" ? 2 : null,
+            pet_name: petName,
+            pet_breed: petBreed,
+            pet_age: petAge,
+            pet_vacc: petVacc,
+            pet_desc: petDesc,
+            pet_location: petLocation,
+        };
+
+        await addPet(formData);
+    };
     useEffect(() => {
-        const userID = sessionStorage.getItem("logValue");
+        const userID = sessionStorage.getItem("userId"); // Retrieve the correct userId
         if (userID) {
-            setOwnerId(userID);
+            setOwnerId(userID); // Set the ownerID state
         } else {
             alert("No user is logged in.");
-            window.location.href = "/Login";
+            window.location.href = "/Login"; // Redirect to login if no user is logged in
         }
-    }
-    , []);
-    const formData = {
-        owner_id: ownerID,
-        pet_type: petType === "Cat" ? 1 : petType === "Dog" ? 2 : null,
-        pet_name: petName,
-        pet_breed: petBreed,
-        pet_age: petAge,
-        pet_vacc: petVacc,
-        pet_desc: petDesc,
-        pet_location: petLocation,
-        // pet_image_url: petImage
-    }
-    async function addPet() {
+    }, []);
+
+    async function addPet(formData) {
         try {
             const result = await AddPet(formData);
             if (result) {
                 alert("Pet added successfully.");
-                window.location.href = "/Profile";
+                window.location.href = "/Profile"; // Redirect to profile page
             } else {
                 alert("Failed to add pet.");
             }

@@ -33,6 +33,7 @@ export default function AdminPage() {
             if (result && result.rowCount > 0) {
                 alert("Pet deleted successfully.");
                 fetchPetData(); // Refresh the pet list after deletion
+                window.location.reload();
             } else {
                 alert("Failed to delete pet.");
             }
@@ -63,6 +64,7 @@ export default function AdminPage() {
             if (result && result.rowCount > 0) {
                 alert("User and associated pets deleted successfully.");
                 fetchUserData(); // Refresh the user list after deletion
+                window.location.reload();
             } else {
                 alert("Failed to delete user.");
             }
@@ -102,59 +104,45 @@ export default function AdminPage() {
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
                     <h3 className="shadow-md p-2 rounded m-1">Pet Details</h3>
                     {petPtr ? (
-                    <table className="w-full text-left">
-                    <tbody>
-                        <tr>
-                            <td className="font-medium text-gray-600">Pet ID:</td>
-                            <td className="text-gray-800">{petPtr.pet_id}</td>
-                        </tr>
-                        <tr>
-                            <td className="font-medium text-gray-600">Name:</td>
-                            <td className="text-gray-800">{petPtr.pet_name}</td>
-                        </tr>
-                        <tr>
-                            <td className="font-medium text-gray-600">Owner:</td>
-                            <td className="text-gray-800">{petPtr.owner_id}</td>
-                        </tr>
-                        <tr>
-                            <td className="font-medium text-gray-600">Breed:</td>
-                            <td className="text-gray-800">{petPtr.pet_breed}</td>
-                        </tr>
-                        <tr>
-                            <td className="font-medium text-gray-600">Age:</td>
-                            <td className="text-gray-800">{petPtr.pet_age}</td>
-                        </tr>
-                        <tr>
-                            <td className="font-medium text-gray-600">Vaccinations:</td>
-                            <td className="text-gray-800">{petPtr.pet_vacc}</td>
-                        </tr>
-                        <tr>
-                            <td className="font-medium text-gray-600">Description:</td>
-                            <td className="text-gray-800">{petPtr.pet_desc}</td>
-                        </tr>
-                        <tr>
-                            <td className="font-medium text-gray-600">Location:</td>
-                            <td className="text-gray-800">{petPtr.pet_location}</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colSpan="2" className="text-center">
-                                {/* <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => alert("Editing Pet")}>Edit</button> */}
-                                <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => {
-                                    if (petPtr) {
-                                        delPet(petPtr.pet_id);
-                                    } else {
-                                        alert("No pet selected");
-                                    }
-                                }}>Delete</button>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-                ):(
-                    <p className="text-center">Select a pet to see details</p>
-                )}
+                    <div className="space-y-4 mt-5">
+                        <div className="flex justify-between">
+                            <p className="font-medium text-gray-600">Pet ID:</p>
+                            <p className="text-gray-800">{petPtr.pet_id}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="font-medium text-gray-600">Name:</p>
+                            <p className="text-gray-800">{petPtr.pet_name}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="font-medium text-gray-600">Breed:</p>
+                            <p className="text-gray-800">{petPtr.pet_breed}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="font-medium text-gray-600">Age:</p>
+                            <p className="text-gray-800">{petPtr.pet_age}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="font-medium text-gray-600">Vaccinations:</p>
+                            <p className="text-gray-800">{petPtr.pet_vacc}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="font-medium text-gray-600">Description:</p>
+                            <p className="text-gray-800">{petPtr.pet_desc}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="font-medium text-gray-600">Location:</p>
+                            <p className="text-gray-800">{petPtr.pet_location}</p>
+                        </div>
+                        <div className="flex justify-center gap-4 mt-6">
+                            <button
+                                className="bg-green-800 text-white shadow-md px-4 py-2 rounded hover:bg-green-700 transition" 
+                                onClick={() => delPet(petPtr.pet_id)}> Delete
+                            </button>
+                        </div>
+                    </div>
+                    ):(
+                        <p className="text-center">Select a pet to see details</p>
+                    )}
             </div>
 {/* ************************************************************ User List ************************************************************ */}
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
@@ -178,44 +166,30 @@ export default function AdminPage() {
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
                     <h3 className="shadow-md p-2 rounded m-1">User Details</h3>
                     {userPtr ? (
-                        <table className="w-full text-left">
-                            <tbody>
-                                <tr>
-                                    <td className="font-medium text-gray-600">User ID:</td>
-                                    <td className="text-gray-800">{userPtr.user_id}</td>
-                                </tr>
-                                <tr>
-                                    <td className="font-medium text-gray-600">Name:</td>
-                                    <td className="text-gray-800">{userPtr.fname}</td>
-                                </tr>
-                                <tr>
-                                    <td className="font-medium text-gray-600">Username:</td>
-                                    <td className="text-gray-800">{userPtr.username}</td>
-                                </tr>
-                                <tr>
-                                    <td className="font-medium text-gray-600">Email:</td>
-                                    <td className="text-gray-800">{userPtr.email}</td>
-                                </tr>
-                                <tr>
-                                    <td className="font-medium text-gray-600">Role ID:</td>
-                                    <td className="text-gray-800">{userPtr.role_id}</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colSpan="2" className="text-center">
-                                        {/* <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => alert("Editing Pet")}>Edit</button> */}
-                                        <button className="bg-green-800 text-white shadow-md p-2 mt-5 m-2 rounded w-50 hover:bg-green-700 transition" onClick={() => {
-                                            if (userPtr) {
-                                                delUser(userPtr.user_id);
-                                            } else {
-                                                alert("No user selected");
-                                            }
-                                        }}>Delete</button>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <div className="space-y-4">
+                            <div className="flex justify-between">
+                                <p className="font-medium text-gray-600">First Name:</p>
+                                <p className="text-gray-800">{userPtr.fname}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p className="font-medium text-gray-600">Email:</p>
+                                <p className="text-gray-800">{userPtr.email}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p className="font-medium text-gray-600">Password:</p>
+                                <p className="text-gray-800">{userPtr.pwd}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p className="font-medium text-gray-600">Role ID:</p>
+                                <p className="text-gray-800">{userPtr.role_id}</p>
+                            </div>
+                            <div className="flex justify-center gap-4 mt-6">
+                                <button
+                                    className="bg-green-800 text-white shadow-md px-4 py-2 rounded hover:bg-green-700 transition" 
+                                    onClick={() => delUser(userPtr.user_id)}> Delete
+                                </button>
+                            </div>
+                        </div>
                     ):(
                         <p className="text-center">Select a user to see details</p>
                     )}

@@ -92,4 +92,20 @@ async function DeletePet(pet_id) {
     }
 }
 
-export { AllPets, GetPet, AddPet, UpdatePet, DeletePet };
+// Get pet by owner ID
+async function GetPetByOwner(owner_id) {
+    try {
+        const result = await pool.query("SELECT * FROM pets WHERE owner_id = $1", [owner_id]); // Query pets table by owner_id
+        if (result.rows.length > 0) {
+            return result.rows; // Return all pets belonging to the owner
+        } else {
+            console.log("No pets found for owner with ID:", owner_id);
+            return [];
+        }
+    } catch (error) {
+        console.error("Query error:", error);
+        return null;
+    }
+}
+
+export { AllPets, GetPet, AddPet, UpdatePet, DeletePet, GetPetByOwner };

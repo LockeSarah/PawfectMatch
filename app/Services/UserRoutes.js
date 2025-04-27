@@ -14,6 +14,7 @@ async function AllUsers() {
         var users = {
             user_id: tmp.user_id,
             fname: tmp.fname,
+            username: tmp.username,
             email: tmp.email,
             pwd: tmp.pwd,
             role_id: tmp.role_id
