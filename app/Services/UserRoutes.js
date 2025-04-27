@@ -57,10 +57,10 @@ async function AddUser(user) {
 
 // Update a user
 async function UpdateUser(user) {
-    var result;
     try {
-        result = await pool.query("UPDATE users SET fname = $1, email = $2, pwd = $3, role_id = $4 WHERE user_id = $5", 
+        const result = await pool.query("UPDATE users SET fname = $1, email = $2, pwd = $3, role_id = $4 WHERE user_id = $5", 
             [user.fname, user.email, user.pwd, user.role_id, user.user_id]);
+            return { ...result.rows[0] };
     } catch (error) {
         console.error("Query error:", error);
     }

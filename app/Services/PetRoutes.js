@@ -68,15 +68,16 @@ async function AddPet(pet) {
 
 // Update a pet
 async function UpdatePet(pet) {
-    var result;
     try {
-        result = await pool.query("UPDATE pets SET" 
-            + "owner_id = $1, pet_type = $2, pet_name = $3, pet_breed = $4, pet_age = $5, pet_vacc = $6, pet_desc = $7, pet_location = $8 WHERE pet_id = $9", 
-            [pet.owner_id, pet.pet_type, pet.pet_name, pet.pet_breed, pet.pet_age, pet.pet_vacc, pet.pet_desc, pet.pet_location, pet.pet_id]);
+        const result = await pool.query(
+            "UPDATE pets SET pet_name = $1, pet_breed = $2, pet_age = $3, pet_vacc = $4, pet_desc = $5, pet_location = $6 WHERE pet_id = $7 RETURNING *",
+            [pet.pet_name, pet.pet_breed, pet.pet_age, pet.pet_vacc, pet.pet_desc, pet.pet_location, pet.pet_id]
+        );
+        return result.rows[0];
     } catch (error) {
-        console.error("Query error:", error);
+        console.error("Error updating pet:", error);
+        return null;
     }
-    return result;
 };
 
 // Delete a pet

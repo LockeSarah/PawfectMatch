@@ -75,11 +75,6 @@ export default function RegisterPage() {
                     <div>
                         <input type="text" id="role_id" placeholder="Lister or Adopter" value={userType} onChange={(e) => setUserType(e.target.value)}
                         className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"/>
-                        {/* <select id="role_id" value={userType} onChange={(e) => setUserType(e.target.value)} className="border border-gray-300 rounded-md p-2 w-full mb-5 text-center"> */}
-                            {/* <option value="">Select Option</option> */}
-                            {/* <option value="2">Lister</option> */}
-                            {/* <option value="3">Adopter</option> */}
-                        {/* </select> */}
                     </div>
                     <div className="flex justify-center">
                         <button type="submit" className="bg-green-800 text-white shadow-md p-2 rounded w-full hover:bg-green-700 transition" value="Submit" onClick={() => {addUser(formData)}}>Register</button>

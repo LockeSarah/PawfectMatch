@@ -80,7 +80,7 @@ export default function AdminPage() {
 
     return (
         <div className="flex flex-col items-center h-screen bg-amber-100">
-            <h1 className="bg-white shadow-md rounded-lg p-6 w-80 text-center text-3xl m-5">Admin Page</h1>
+            <h1 className="bg-white shadow-md rounded-lg p-6 w-80 text-center text-3xl font-semibold m-5">Admin Page</h1>
             <div className="grid grid-cols-4 gap-4">
 {/* ************************************************************ Pet List ************************************************************ */}
                 <div className="bg-white shadow-md rounded-lg p-6 w-80 text-center">
